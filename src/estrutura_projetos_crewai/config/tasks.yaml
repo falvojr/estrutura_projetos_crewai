@@ -1,0 +1,19 @@
+research_task:
+  description: >
+    Conduza uma pesquisa aprofundada sobre {topic}.
+    Certifique-se de encontrar informações interessantes e relevantes,
+    considerando que o ano atual é {current_year}.
+  expected_output: >
+    Uma lista com 3 tópicos em formato de bullet points contendo as informações mais relevantes sobre {topic}.
+    Resposta sempre no idioma português do Brasil.
+  agent: researcher
+
+reporting_task:
+  description: >
+    Revise o contexto recebido e expanda cada tópico em uma seção completa para um relatório.
+    Certifique-se de que o relatório seja detalhado e contenha todas as informações relevantes.
+  expected_output: >
+    Um relatório completo com os principais tópicos, cada um desenvolvido em uma seção informativa.
+    Formatado em markdown, sem utilizar '```'.
+    Resposta sempre no idioma português do Brasil.
+  agent: reporting_analyst
