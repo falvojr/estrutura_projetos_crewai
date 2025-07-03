@@ -1,54 +1,96 @@
-# EstruturaProjetosCrewai Crew
+# Estrutura de Projetos CrewAI
 
-Welcome to the EstruturaProjetosCrewai Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Sistema multi-agente de IA para pesquisa e criação de relatórios, desenvolvido com [crewAI](https://crewai.com).
 
-## Installation
+## Estrutura do Projeto
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
-
-First, if you haven't already, install uv:
-
-```bash
-pip install uv
+```
+estrutura_projetos_crewai/
+├── .env                           # Variáveis de ambiente (modelo LLM)
+├── .gitignore                     # Arquivos ignorados pelo Git
+├── README.md                      # Documentação do projeto
+├── pyproject.toml                 # Configurações e dependências do projeto
+├── knowledge/                     # Base de conhecimento
+│   └── user_preference.txt        # Preferências do usuário
+└── src/estrutura_projetos_crewai/
+    ├── __init__.py               # Inicialização do pacote
+    ├── main.py                   # Ponto de entrada principal
+    ├── crew.py                   # Definição da equipe de agentes
+    ├── config/                   # Configurações dos agentes e tarefas
+    │   ├── agents.yaml           # Configuração dos agentes
+    │   └── tasks.yaml            # Configuração das tarefas
+    └── tools/                    # Ferramentas customizadas
+        ├── __init__.py
+        └── custom_tool.py        # Exemplo de ferramenta personalizada
 ```
 
-Next, navigate to your project directory and install the dependencies:
+## Principais Arquivos
 
-(Optional) Lock the dependencies and install them by using the CLI command:
+### **config/agents.yaml**
+Define os agentes da equipe:
+- **researcher**: Pesquisador sênior especializado em encontrar avanços inovadores
+- **reporting_analyst**: Analista que transforma dados em relatórios detalhados
+
+### **config/tasks.yaml**
+Define as tarefas executadas pelos agentes:
+- **research_task**: Conduz pesquisa aprofundada sobre um tópico
+- **reporting_task**: Cria relatório completo em markdown
+
+### **crew.py**
+Orquestra os agentes e tarefas, configurando o fluxo de trabalho sequencial.
+
+### **main.py**
+Ponto de entrada com funções para executar, treinar e testar a equipe.
+
+## Instalação
+
+Certifique-se de ter Python >=3.10 <3.13 instalado.
+
+### 1. Criar o projeto
+```bash
+crewai create crew estrutura_projetos_crewai
+```
+
+### 2. Instalar dependências
 ```bash
 crewai install
 ```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/estrutura_projetos_crewai/config/agents.yaml` to define your agents
-- Modify `src/estrutura_projetos_crewai/config/tasks.yaml` to define your tasks
-- Modify `src/estrutura_projetos_crewai/crew.py` to add your own logic, tools and specific args
-- Modify `src/estrutura_projetos_crewai/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
+### 3. Configurar variáveis de ambiente
+Adicione sua chave de API no arquivo `.env`, no nosso caso estamos usando um LLM localmente:
 ```bash
-$ crewai run
+MODEL=ollama/llama3.1
+API_BASE=http://localhost:11434
 ```
 
-This command initializes the estrutura_projetos_crewai Crew, assembling the agents and assigning them tasks as defined in your configuration.
+## Execução
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+Para executar a equipe de agentes:
 
-## Understanding Your Crew
+```bash
+crewai run
+```
 
-The estrutura_projetos_crewai Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+Este comando irá:
+1. Inicializar os agentes configurados
+2. Executar a pesquisa sobre o tópico definido
+3. Gerar um relatório completo em `report.md`
 
-## Support
+## Personalização
 
-For support, questions, or feedback regarding the EstruturaProjetosCrewai Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+- **Agentes**: Modifique `config/agents.yaml` para definir novos agentes
+- **Tarefas**: Edite `config/tasks.yaml` para criar novas tarefas
+- **Lógica**: Customize `crew.py` para adicionar ferramentas e argumentos específicos
+- **Entrada**: Altere `main.py` para definir novos inputs para agentes e tarefas
 
-Let's create wonders together with the power and simplicity of crewAI.
+## Requisitos
+
+- Python >=3.10 <3.13
+- CrewAI framework
+- Chave de API OpenAI (ou outro provedor LLM configurado)
+
+## Suporte
+
+- [Documentação CrewAI](https://docs.crewai.com)
+- [Repositório GitHub](https://github.com/joaomdmoura/crewai)
+- [Discord](https://discord.com/invite/X4JWnZnxPb)
